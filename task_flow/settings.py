@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = ',K9?n]>:uh`^6^$uG*o$7L|tb&]wlh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-mfs4711-taskflow-tzpd3xnp5js.ws.codeinstitute-ide.net', '.herokuapp.com']
 
