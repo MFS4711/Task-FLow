@@ -11,4 +11,6 @@ class Task(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_tasks")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_tasks"
+    )
