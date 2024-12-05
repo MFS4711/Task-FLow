@@ -1,3 +1,101 @@
+/* Import google font styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Apply Google Fonts to the entire webpage */
 body {
-    background-color: blue;
+    font-family: 'Roboto', sans-serif; /* Default font for body text */
+}
+
+.content-area {
+    min-height: 75vh;
+}
+
+/*------------------------------ Navbar custom styling ----------------------*/
+.navbar {
+    padding: 0.8rem 1.2rem;
+}
+
+.navbar-brand {
+    font-family: 'Poppins', sans-serif; /* Use Poppins for the brand name */
+    font-size: 1.6rem;
+    font-weight: 600; /* Make the brand name bold */
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.navbar-scrolled {
+    background-color: #343a40 !important;
+}
+
+/*----------------- Footer Styling -------------------------*/
+footer {
+    background-color: #343a40; /* Dark background for the footer */
+    color: #f8f9fa; /* Light text color */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+footer a {
+    color: #f8f9fa; /* Links in the footer are white */
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff6600; /* Highlight links on hover with an orange color */
+    text-decoration: underline;
+}
+
+/* Styling for the footer's about section */
+footer .col-md-4 h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Footer section layout */
+footer .row {
+    margin-bottom: 2rem;
+}
+
+footer .list-unstyled {
+    padding-left: 0;
+}
+
+footer .list-unstyled li {
+    margin-bottom: 0.5rem;
+}
+
+footer .text-center p {
+    font-size: 0.9rem;
+    color: #f8f9fa;
+}
+
+/* For social media icons */
+footer .fab {
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    /* ------------ Navbar ------------ */
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1rem;
+    }
+
+    /* ------------ Footer ------------ */
+    footer .col-md-4 {
+        margin-bottom: 1rem;
+    }
 }
