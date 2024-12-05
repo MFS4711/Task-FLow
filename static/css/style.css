@@ -36,6 +36,10 @@ body {
     background-color: #343a40 !important;
 }
 
+.active {
+    font-weight: 800;
+}
+
 /*----------------- Footer Styling -------------------------*/
 footer {
     background-color: #343a40; /* Dark background for the footer */
