@@ -20,4 +20,5 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.homepage, name='home'),
+    path('<int:user_id>/dashboard/', views.dashboard, name='dashboard'),
 ]
