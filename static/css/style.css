@@ -40,6 +40,32 @@ body {
     font-weight: 600;
 }
 
+/* ---------------- index.html ----------------------------- */
+/* Custom button hover effects */
+.btn-primary:hover, .btn-success:hover {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-text {
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
 /*----------------- Footer Styling -------------------------*/
 footer {
     background-color: #343a40; /* Dark background for the footer */
