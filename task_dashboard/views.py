@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from .models import Task
+from .forms import TaskForm
 from django.http import Http404
 
 # Create your views here.
@@ -23,10 +24,25 @@ def dashboard(request, user_id):
     # Fetch tasks for the specific user (only the logged-in user’s tasks)
     tasks = Task.objects.filter(author=user).order_by('-status', '-due_date')
 
+    # Handle Post request from Task Form
+    if request.method == "POST":
+        task_form = TaskForm(data=request.POST)
+        if task_form.is_valid():
+            task = task_form.save(commit=False)
+            task.author = request.user
+            task.save()
+        
+            # Redirect to the same dashboard page after saving the task
+            return redirect('dashboard', user_id=user.id)  # Redirect to the dashboard with the same user_id
+
+    # Display Form
+    task_form = TaskForm()
+
     # Context to pass to the template
     context = {
         "user": user,
         "tasks": tasks,
+        "task_form": task_form,
     }
 
     # Render the dashboard page for the specific user
