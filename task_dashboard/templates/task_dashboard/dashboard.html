@@ -2,8 +2,29 @@
 
 {% block content %}
 
-<div class="container">
-    <h1>Welcome to {{ user.username }}'s Dashboard</h1>
+<h1>{{ user.username }}'s Dashboard</h1>
+
+<h2>Tasks</h2>
+
+<div class="row">
+    {% for task in tasks %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <p class="card-text">
+                        <strong>Status:</strong> {{ task.get_status_display }} <br>
+                        <strong>Due:</strong> {{ task.due_date }} <br>
+                        <strong>Description:</strong> {{ task.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <p>You have no tasks.</p>
+        </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

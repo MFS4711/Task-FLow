@@ -19,10 +19,14 @@ def dashboard(request, user_id):
     if user != request.user:
         # Raise 404 if the logged-in user tries to access another user's dashboard
         raise Http404("You do not have permission to view this page.")
+    
+    # Fetch tasks for the specific user (only the logged-in user’s tasks)
+    tasks = Task.objects.filter(author=user).order_by('-status', '-due_date')
 
     # Context to pass to the template
     context = {
         "user": user,
+        "tasks": tasks,
     }
 
     # Render the dashboard page for the specific user
