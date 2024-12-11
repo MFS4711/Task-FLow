@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 from .models import Task
 from .forms import TaskForm
-from django.http import Http404
 
 # Create your views here.
 
@@ -57,7 +58,7 @@ def dashboard(request, user_id):
     return render(request, "task_dashboard/dashboard.html", context)
 
 
-def task_edit(request, task_id):
+def task_edit(request, user_id, task_id):
     """
     view to edit a task
     """
@@ -78,3 +79,4 @@ def task_edit(request, task_id):
     
     # Blow with view you want to run - and in args - the necessary parameter
     return HttpResponseRedirect(reverse('dashboard', args=[task.author.id]))
+    # return redirect('dashboard', user_id=task.author.id)

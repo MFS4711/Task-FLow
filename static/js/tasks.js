@@ -65,10 +65,7 @@ for (let button of editButtons) {
 
     // Update the form action to include the task ID and change the button text to "Update Task"
     const userId = document.getElementById("user-id").value;
-    taskForm.setAttribute(
-      "action",
-      `/${userId}/dashboard/edit_task/${taskId}/`
-    );
+    taskForm.setAttribute("action", `edit_task/${taskId}/`);
     submitButton.innerText = "Update Task";
   });
 }
