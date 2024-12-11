@@ -79,3 +79,17 @@ def task_edit(request, user_id, task_id):
     # Blow with view you want to run - and in args - the necessary parameter
     return HttpResponseRedirect(reverse('dashboard', args=[task.author.id]))
     # return redirect('dashboard', user_id=task.author.id)
+
+def task_delete(request, user_id, task_id):
+    """
+    view to delete a task
+    """
+    task = get_object_or_404(Task, pk=task_id)
+
+    if task.author == request.user:
+        task.delete()
+        messages.add_message(request, messages.SUCCESS, 'Task deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'There was an deleting updating the task. Please try again.')
+
+    return HttpResponseRedirect(reverse('dashboard', args=[task.author.id]))

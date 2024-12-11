@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.homepage, name='home'),
     path('<int:user_id>/dashboard/', views.dashboard, name='dashboard'),
     path('<int:user_id>/dashboard/edit_task/<int:task_id>/', views.task_edit, name='task_edit'),
+    path('<int:user_id>/dashboard/delete_task/<int:task_id>/', views.task_delete, name='task_delete'),
 ]

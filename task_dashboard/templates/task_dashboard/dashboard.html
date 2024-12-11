@@ -17,13 +17,17 @@
             <div class="card-body">
                 <h5 class="card-title" id="task-title-{{ task.id }}">{{ task.title }}</h5>
                 <p class="card-text">
-                    <strong>Status:</strong> <span id="task-status-{{ task.id }}">{{ task.get_status_display }}</span> <br>
+                    <strong>Status:</strong> <span id="task-status-{{ task.id }}">{{ task.get_status_display }}</span>
+                    <br>
                     <strong>Due:</strong> <span id="task-due-date-{{ task.id }}">{{ task.due_date }}</span> <br>
-                    <strong>Description:</strong> <span id="task-description-{{ task.id }}">{{ task.description }}</span>
+                    <strong>Description:</strong> <span
+                        id="task-description-{{ task.id }}">{{ task.description }}</span>
                 </p>
                 <!-- Edit Task Button -->
                 <button type="button" class="btn btn-primary btn-edit" data-task-id="{{ task.id }}">Edit Task</button>
-
+                <!-- Delete Button -->
+                <button type="button" class="btn btn-danger btn-delete" data-task-id="{{ task.id }}">Delete
+                    Task</button>
             </div>
         </div>
     </div>
@@ -44,7 +48,28 @@
     <button id="submit-button" type="submit" name="create_task">Create Task</button>
 </form>
 
-{% endblock content%}
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="delete-confirm" href="#" class="btn
+          btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
 
 {% block extras %}
 <script src="{% static 'js/tasks.js' %}"></script>

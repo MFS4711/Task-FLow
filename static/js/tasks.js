@@ -13,6 +13,12 @@ const taskForm = document.getElementById("task-form");
 // submit button
 const submitButton = document.getElementById("submit-button");
 
+// JS for bootstrap Modal:
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+// Delete buttons
+const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteConfirm = document.getElementById("delete-confirm");
+
 /**
  * Initializes edit functionality for the provided edit buttons.
  *
@@ -66,6 +72,25 @@ for (let button of editButtons) {
     const userId = document.getElementById("user-id").value;
     taskForm.setAttribute("action", `edit_task/${taskId}/`);
     submitButton.innerText = "Update Task";
+  });
+}
+
+
+/**
+* Initializes deletion functionality for the provided delete buttons.
+* 
+* For each button in the `deleteButtons` collection:
+* - Retrieves the associated comment's ID upon click.
+* - Updates the `deleteConfirm` link's href to point to the 
+* deletion endpoint for the specific comment.
+* - Displays a confirmation modal (`deleteModal`) to prompt 
+* the user for confirmation before deletion.
+*/
+for (let button of deleteButtons) {
+  button.addEventListener("click", (e) => {
+    let taskId = e.target.getAttribute("data-task-id");
+    deleteConfirm.href = `delete_task/${taskId}/`;
+    deleteModal.show();
   });
 }
 
