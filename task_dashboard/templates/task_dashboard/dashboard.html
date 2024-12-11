@@ -1,39 +1,51 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
 
 <h1>{{ user.username }}'s Dashboard</h1>
 
-<h2>Create a New Task</h2>
-<form method="POST" id="create-task-form">
-    {% csrf_token %}
-    {{ task_form | crispy }}
-    <button type="submit" name="create_task">Create Task</button>
-</form>
-
 <h2>Tasks</h2>
 
 <div class="row">
     {% for task in tasks %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ task.title }}</h5>
-                    <p class="card-text">
-                        <strong>Status:</strong> {{ task.get_status_display }} <br>
-                        <strong>Due:</strong> {{ task.due_date }} <br>
-                        <strong>Description:</strong> {{ task.description }}
-                    </p>
-                </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" id="task-title-{{ task.id }}">{{ task.title }}</h5>
+                <p class="card-text">
+                    <strong>Status:</strong> <span id="task-status-{{ task.id }}">{{ task.get_status_display }}</span> <br>
+                    <strong>Due:</strong> <span id="task-due-date-{{ task.id }}">{{ task.due_date }}</span> <br>
+                    <strong>Description:</strong> <span id="task-description-{{ task.id }}">{{ task.description }}</span>
+                </p>
+                <!-- Edit Task Button -->
+                <button type="button" class="btn btn-primary btn-edit" data-task-id="{{ task.id }}">Edit Task</button>
+
             </div>
         </div>
+    </div>
     {% empty %}
-        <div class="col-12">
-            <p>You have no tasks.</p>
-        </div>
+    <div class="col-12">
+        <p>You have no tasks.</p>
+    </div>
     {% endfor %}
 </div>
 
+<h2>Create a New Task</h2>
+<!-- Hidden input for user ID -->
+<input type="hidden" id="user-id" value="{{ user.id }}">
+<!-- Create a Task Form -->
+<form method="POST" id="task-form">
+    {% csrf_token %}
+    {{ task_form | crispy }}
+    <button id="submit-button" type="submit" name="create_task">Create Task</button>
+</form>
+
+{% endblock content%}
+
+{% block extras %}
+<script src="{% static 'js/tasks.js' %}"></script>
 {% endblock %}

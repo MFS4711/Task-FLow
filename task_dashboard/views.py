@@ -55,3 +55,26 @@ def dashboard(request, user_id):
 
     # Render the dashboard page for the specific user
     return render(request, "task_dashboard/dashboard.html", context)
+
+
+def task_edit(request, task_id):
+    """
+    view to edit a task
+    """
+    if request.method == "POST":
+        # get object you want to edit
+        task = get_object_or_404(Task, pk=task_id)
+        # initialises form with instance of task pre-filled
+        task_form = TaskForm(data=request.POST, instance=task)
+        # form validation and authentication check
+        if task_form.is_valid():
+            # Save the form with the updated data
+            task_form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Task successfully updated!')
+        else:
+            messages.add_message(
+                request, messages.ERROR, 'There was an error updating the task. Please try again.')
+    
+    # Blow with view you want to run - and in args - the necessary parameter
+    return HttpResponseRedirect(reverse('dashboard', args=[task.author.id]))
