@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import Http404, HttpResponseRedirect
-from django.urls import reverse
 from .models import Task
 from .forms import TaskForm
 
