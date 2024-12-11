@@ -39,7 +39,7 @@ for (let button of editButtons) {
     let taskDueDateContent = document.getElementById(
       `task-due-date-${taskId}`
     ).innerText;
-    console.log(taskDueDateContent)
+    // console.log(taskDueDateContent)
     let taskDescriptionContent = document.getElementById(
       `task-description-${taskId}`
     ).innerText;
@@ -61,7 +61,6 @@ for (let button of editButtons) {
 
     // run function to put date in format the javascript can handle
     taskDueDate.value = parseCustomDate(taskDueDateContent)
-
 
     // Update the form action to include the task ID and change the button text to "Update Task"
     const userId = document.getElementById("user-id").value;
