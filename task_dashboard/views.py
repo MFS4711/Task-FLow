@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import Http404, HttpResponseRedirect
+from django.utils import timezone
 from .models import Task
 from .forms import TaskForm
 
@@ -27,6 +28,12 @@ def dashboard(request, user_id):
 
     # Fetch tasks for the specific user (only the logged-in user’s tasks)
     tasks = Task.objects.filter(author=user).order_by('-status', '-due_date')
+
+    # Check if any tasks are overdue and update their status
+    for task in tasks:
+        if task.due_date and task.due_date <= timezone.now() and task.status != 3:  # 3 is "Overdue"
+            task.status = 3  # Set status to "Overdue"
+            task.save()
 
     # Handle Post request from Task Form
     if request.method == "POST":

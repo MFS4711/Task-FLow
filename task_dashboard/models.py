@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-STATUS = ((0, "Not Started"), (1, "In Progress"), (2, "Completed"), (2, "Overdue"))
+STATUS = ((0, "Not Started"), (1, "In Progress"), (2, "Completed"), (3, "Overdue"))
 
 # Create your models here.
 class Task(models.Model):
