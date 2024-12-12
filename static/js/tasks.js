@@ -45,7 +45,8 @@ for (let button of editButtons) {
     let taskDueDateContent = document.getElementById(
       `task-due-date-${taskId}`
     ).innerText;
-    // console.log(taskDueDateContent)
+    // console.log(taskDueDateContent);
+    // console.log(typeof taskDueDateContent);
     let taskDescriptionContent = document.getElementById(
       `task-description-${taskId}`
     ).innerText;
